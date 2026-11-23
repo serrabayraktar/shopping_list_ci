@@ -8,18 +8,22 @@ on:
 jobs:
   widget-tests:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.19.2'
           channel: stable
-      - name: Generate Flutter platform files
-        run: flutter create --platforms=android .
+
       - name: Install dependencies
         run: flutter pub get
+
       - name: Analyze code
         run: flutter analyze
+
       - name: Run widget tests
         run: flutter test
